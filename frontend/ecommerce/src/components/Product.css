@@ -1,0 +1,14 @@
+.uk-card-media-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.uk-grid-match {
+    display: flex; /* Activa Flexbox */
+    align-items: stretch; /* Estira los elementos a la misma altura */
+}
+
+.uk-button-secondary{
+    border-radius: 30px;
+}

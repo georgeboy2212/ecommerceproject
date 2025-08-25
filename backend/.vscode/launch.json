@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HomeApplication<home>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ecommerceapp.home.HomeApplication",
+            "projectName": "home",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
