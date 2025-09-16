@@ -14,17 +14,34 @@ const ProductList = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      axios
-        .get("http://localhost:8080/api/productos")
-        .then((response) => {
+      const fetchProducts = async () => {
+        try {
+          // 1. Obtener el token guardado en el localStorage
+          const token = localStorage.getItem("token");
+
+          // 2. Si no hay token, no intentar hacer la petición
+          if (!token) {
+            setError("No estás autenticado. Por favor, inicia sesión.");
+            return;
+          }
+
+          // 3. Hacer la petición GET incluyendo el token en la cabecera 'Authorization'
+          const response = await axios.get("http://localhost:8080/api/productos", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
           setProducts(response.data);
           setLoading(false);
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Error fetching products:", error);
           setError("Ops, Error al cargar los productos..");
           setLoading(false);
-        });
+        }
+      };
+
+      fetchProducts();
     }, 2000);
   }, []);
 
@@ -53,7 +70,6 @@ const ProductList = () => {
     return <div>{error}</div>;
   }
 
-  // Renderizado condicional
   if (selectedProductId) {
     return (
       <ProductDetail
@@ -65,7 +81,7 @@ const ProductList = () => {
 
   return (
     <div className="uk-container uk-container-large uk-margin-large-top">
-      {/* Search Input */}Ñ
+      {/* Search Input */}
       <div className="uk-margin-medium-bottom">
         <input
           className="uk-input uk-form-width-large"
