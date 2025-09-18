@@ -1,5 +1,5 @@
 import React from "react";
-import './Product.css'; // Asegúrate de tener estilos para el componente Product
+import './Product.css'; 
 
 const Product = ({ product, onProductClick }) => {
   const {
